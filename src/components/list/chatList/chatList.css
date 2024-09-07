@@ -1,0 +1,153 @@
+.chatlist {
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.chatlist::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chatlist::-webkit-scrollbar-track {
+    background-color: #dddddd35;
+    border-radius: 6px;
+}
+
+.chatlist::-webkit-scrollbar-thumb {
+    background-color: #dddddd35;
+    border-radius: 6px;
+}
+
+.chatlist::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.chatlist .search {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.chatlist .search .searchBar {
+    flex: 1;
+    background-color: rgba(17, 25, 40, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.chatlist .search .searchBar input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    flex: 1;
+    font-size: 14px;
+}
+
+.chatlist .search .searchBar img {
+    width: 20px;
+    height: 20px;
+}
+
+.chatlist .search .add {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(17, 25, 40, 0.5);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.chatlist .item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #dddddd35;
+}
+
+.chatlist .item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.chatlist .item .texts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chatlist .item span {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.chatlist .item p {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .chatlist .search .searchBar {
+        gap: 10px;
+    }
+
+    .chatlist .search .searchBar input {
+        font-size: 12px;
+    }
+
+    .chatlist .search .add {
+        width: 32px;
+        height: 32px;
+    }
+
+    .chatlist .item img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chatlist .item span {
+        font-size: 14px;
+    }
+
+    .chatlist .item p {
+        font-size: 12px;
+    }
+}
+
+/* Mobil ekranlar için */
+@media (max-width: 480px) {
+    .chatlist .search .searchBar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .chatlist .search .searchBar input {
+        font-size: 10px;
+    }
+
+    .chatlist .search .add {
+        width: 28px;
+        height: 28px;
+    }
+
+    .chatlist .item img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .chatlist .item span {
+        font-size: 12px;
+    }
+
+    .chatlist .item p {
+        font-size: 10px;
+    }
+}
