@@ -44,7 +44,7 @@ h2 {
     border-radius: 50%;
 }
 
-input {
+.loginInput {
     width: 100%;
     padding: 1rem;
     border-radius: 8px;
@@ -56,12 +56,12 @@ input {
     transition: all 0.2s ease-in-out;
 }
 
-input:focus {
+.loginInput:focus {
     outline: none;
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-button {
+.singBtn {
     width: 100%;
     padding: 1rem;
     border: none;
@@ -73,7 +73,7 @@ button {
     transition: all 0.3s ease;
 }
 
-button:hover {
+.singBtn:hover {
     background-color: #2980b9;
 }
 
@@ -139,12 +139,12 @@ button:hover {
         font-size: 1.2rem;
     }
 
-    input {
+    .loginInput {
         padding: 0.8rem;
         font-size: 0.9rem;
     }
 
-    button {
+    .singBtn {
         padding: 0.8rem;
         font-size: 0.9rem;
     }

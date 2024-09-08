@@ -36,9 +36,19 @@ const Login = () => {
       <div className="item">
         <h2>Welcome back,</h2>
         <form onSubmit={handleLogin}>
-          <input type="text" placeholder="Email" name="email"></input>
-          <input type="password" placeholder="Password" name="password"></input>
-          <button>Sign In</button>
+          <input
+            className="loginInput"
+            type="text"
+            placeholder="Email"
+            name="email"
+          ></input>
+          <input
+            className="loginInput"
+            type="password"
+            placeholder="Password"
+            name="password"
+          ></input>
+          <button className="singBtn">Sign In</button>
         </form>
         <button className="google-login">
           <img src="./google-icon.png" alt="Google Icon" />
@@ -54,15 +64,31 @@ const Login = () => {
             Upload an image
           </label>
           <input
+            className="loginInput"
             type="file"
             id="file"
             style={{ display: "none" }}
             onChange={handleAvatar}
           ></input>
-          <input type="text" placeholder="Username" name="username"></input>
-          <input type="text" placeholder="Email" name="email"></input>
-          <input type="password" placeholder="Password" name="password"></input>
-          <button>Sign Up</button>
+          <input
+            className="loginInput"
+            type="text"
+            placeholder="Username"
+            name="username"
+          ></input>
+          <input
+            className="loginInput"
+            type="text"
+            placeholder="Email"
+            name="email"
+          ></input>
+          <input
+            className="loginInput"
+            type="password"
+            placeholder="Password"
+            name="password"
+          ></input>
+          <button className="singBtn">Sign Up</button>
         </form>
       </div>
     </div>
