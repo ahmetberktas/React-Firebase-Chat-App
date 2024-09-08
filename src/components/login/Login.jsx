@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./login.css";
 import { toast } from "react-toastify";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../../lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import upload from "../../lib/upload";
 
 const Login = () => {
   const [avatar, setAvatar] = useState({
@@ -8,12 +12,59 @@ const Login = () => {
     url: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleAvatar = (e) => {
     if (e.target.files[0]) {
       setAvatar({
         file: e.target.files[0],
         url: URL.createObjectURL(e.target.files[0]),
       });
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.target);
+    const { username, email, password } = Object.fromEntries(formData);
+
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const imgUrl = await upload(avatar.file);
+      await setDoc(doc(db, "users", res.user.uid), {
+        username,
+        email,
+        avatar: imgUrl,
+        id: res.user.uid,
+        blocked: [],
+      });
+      await setDoc(doc(db, "userchats", res.user.uid), {
+        chats: [],
+      });
+      toast.success("Kayıt İşlemi Başarılı, Giriş Yapabilirsiniz", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        closeButton: false,
+      });
+    } catch (err) {
+      toast.error("Kayıt İşlemi Sırasında Hata Oluştu", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        closeButton: false,
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,9 +99,11 @@ const Login = () => {
             placeholder="Password"
             name="password"
           ></input>
-          <button className="singBtn">Sign In</button>
+          <button disabled={loading} className="singBtn">
+            {loading ? "Loading" : "Sign In"}
+          </button>
         </form>
-        <button className="google-login">
+        <button disabled={loading} className="google-login">
           <img src="./google-icon.png" alt="Google Icon" />
           Sign in with Google
         </button>
@@ -58,7 +111,7 @@ const Login = () => {
       <div className="separator"></div>
       <div className="item">
         <h2>Create an Account</h2>
-        <form>
+        <form onSubmit={handleRegister}>
           <label htmlFor="file">
             <img src={avatar.url || "./avatar.png"} alt="Avatar"></img>
             Upload an image
@@ -88,7 +141,9 @@ const Login = () => {
             placeholder="Password"
             name="password"
           ></input>
-          <button className="singBtn">Sign Up</button>
+          <button disabled={loading} className="singBtn">
+            {loading ? "Loading" : "Sign Up"}
+          </button>
         </form>
       </div>
     </div>
