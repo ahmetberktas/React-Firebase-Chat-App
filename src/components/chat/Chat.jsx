@@ -135,6 +135,7 @@ const Chat = () => {
           <img src="./microphone.png"></img>
         </div>
         <input
+          className="text-input"
           type="text"
           placeholder="Mesaj yazınız"
           value={text}

@@ -9,3 +9,4 @@
 # Kütüphaneler
 
 - emoji-picker-react
+- react-toastify

@@ -38,13 +38,15 @@
     padding: 10px;
 }
 
-.chatlist .search .searchBar input {
+.chatlist .search .searchBar .searchInput {
     background-color: transparent;
     border: none;
     outline: none;
     color: #fff;
     flex: 1;
     font-size: 14px;
+    padding: 0;
+    margin-bottom: 0;
 }
 
 .chatlist .search .searchBar img {
@@ -61,7 +63,7 @@
     border-radius: 10px;
 }
 
-.chatlist .item {
+.chatlist .items {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -70,7 +72,7 @@
     border-bottom: 1px solid #dddddd35;
 }
 
-.chatlist .item img {
+.chatlist .items img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -78,18 +80,18 @@
     border: 2px solid #ddd;
 }
 
-.chatlist .item .texts {
+.chatlist .items .texts {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.chatlist .item span {
+.chatlist .items span {
     font-weight: 500;
     font-size: 16px;
 }
 
-.chatlist .item p {
+.chatlist .items p {
     font-size: 14px;
     font-weight: 300;
 }
