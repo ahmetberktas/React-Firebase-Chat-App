@@ -115,10 +115,6 @@ const Login = () => {
             {loading ? "Loading" : "Sign In"}
           </button>
         </form>
-        <button disabled={loading} className="google-login">
-          <img src="./google-icon.png" alt="Google Icon" />
-          Sign in with Google
-        </button>
       </div>
       <div className="separator"></div>
       <div className="item">
