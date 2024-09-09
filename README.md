@@ -11,3 +11,4 @@
 - emoji-picker-react
 - react-toastify
 - firebase
+- zustand
