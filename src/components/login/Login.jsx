@@ -4,6 +4,9 @@ import { toast } from "react-toastify";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  setPersistence,
+  browserSessionPersistence,
 } from "firebase/auth";
 import { auth, db } from "../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
@@ -33,6 +36,9 @@ const Login = () => {
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
+      // Firebase oturum bilgisinin sadece tarayıcı oturumu boyunca geçerli olmasını sağlıyoruz
+      await setPersistence(auth, browserSessionPersistence);
+
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const imgUrl = await upload(avatar.file);
       await setDoc(doc(db, "users", res.user.uid), {
@@ -45,6 +51,7 @@ const Login = () => {
       await setDoc(doc(db, "userchats", res.user.uid), {
         chats: [],
       });
+
       toast.success("Kayıt İşlemi Başarılı, Giriş Yapabilirsiniz", {
         position: "top-right",
         autoClose: 2000,
@@ -67,6 +74,8 @@ const Login = () => {
         closeButton: false,
       });
     } finally {
+      // Kayıt işlemi tamamlandıktan sonra çıkış yapılıyor
+      await signOut(auth);
       setLoading(false);
     }
   };
