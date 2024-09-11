@@ -13,7 +13,7 @@ import { useChatStore } from "../../lib/chatStore";
 import { useUserStore } from "../../lib/userStore";
 import upload from "../../lib/upload";
 
-const Chat = () => {
+const Chat = ({ detailVisible }) => {
   const [chat, setChat] = useState();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
@@ -116,7 +116,7 @@ const Chat = () => {
         <div className="icons">
           <img src="./phone.png" alt="phone" />
           <img src="./video.png" alt="video" />
-          <img src="./info.png" alt="info" />
+          <img src="./info.png" alt="info" onClick={detailVisible} />
         </div>
       </div>
       <div className="center">

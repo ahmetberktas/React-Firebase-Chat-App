@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import List from "./components/list/List";
 import Chat from "./components/chat/Chat";
 import Detail from "./components/detail/Detail";
@@ -10,8 +10,13 @@ import { useUserStore } from "./lib/userStore";
 import { useChatStore } from "./lib/chatStore";
 
 const App = () => {
+  const [isVisible, setIsVisible] = useState(false);
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
   const { chatId } = useChatStore();
+
+  const detailVisible = () => {
+    setIsVisible(!isVisible);
+  };
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
@@ -23,18 +28,19 @@ const App = () => {
   }, [fetchUserInfo]);
 
   if (isLoading) return <div className="loading">Loading...</div>;
+
   return (
     <div className="container">
       {currentUser ? (
         <>
-          <List></List>
-          {chatId && <Chat></Chat>}
-          {chatId && <Detail></Detail>}
+          <List />
+          {chatId && <Chat detailVisible={detailVisible} />}
+          {chatId && isVisible && <Detail />}
         </>
       ) : (
-        <Login></Login>
+        <Login />
       )}
-      <Notification></Notification>
+      <Notification />
     </div>
   );
 };
