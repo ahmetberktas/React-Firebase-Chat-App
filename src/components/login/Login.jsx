@@ -113,12 +113,14 @@ const Login = () => {
             type="text"
             placeholder="Email"
             name="email"
+            value="test@gmail.com"
           ></input>
           <input
             className="loginInput"
             type="password"
             placeholder="Password"
             name="password"
+            value="123456"
           ></input>
           <button disabled={loading} className="singBtn">
             {loading ? "Loading" : "Sign In"}
